@@ -6,14 +6,19 @@ public class Submission {
 
     private int week;
     private int hours;
-    private List<String> exercises;
+    private List<Integer> exercises;
     private String course;
+    private Course attachedCourse;
 
     public String getCourse() {
         return course;
     }
 
-    public List<String> getExercises() {
+    public Course getAttachedCourse() {
+        return attachedCourse;
+    }
+
+    public List<Integer> getExercises() {
         return exercises;
     }
 
@@ -33,7 +38,11 @@ public class Submission {
         this.course = course;
     }
 
-    public void setExercises(List<String> exercises) {
+    public void setAttachedCourse(Course attachedCourse) {
+        this.attachedCourse = attachedCourse;
+    }
+
+    public void setExercises(List<Integer> exercises) {
         this.exercises = exercises;
     }
 
@@ -43,7 +52,7 @@ public class Submission {
 
     @Override
     public String toString() {
-        return course + ", viikko " + week + " tehtyjä tehtäviä yhteensä " + exercises.size() + " aikaa kului " + hours + " tehdyt tehävät: " + exercises.toString();
+        return "viikko " + week + ":\n tehtyjä tehtäviä yhteensä " + exercises.size() + "/" + attachedCourse.getExercisesFromWeek(week) +" aikaa kului " + hours + " tehdyt tehävät: " + exercises.toString();
     }
 
 }
