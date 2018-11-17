@@ -17,16 +17,20 @@ public class Main {
 
         String bodyText = Request.Get(url).execute().returnContent().asString();
 
-        System.out.println("json-muotoinen data:");
-        System.out.println( bodyText );
+        System.out.println("opiskelijanumero " + studentNr + "\n");
 
         Gson mapper = new Gson();
         Submission[] subs = mapper.fromJson(bodyText, Submission[].class);
         
-        System.out.println("Oliot:");
+        int exercisesTotal = 0;
+        int hoursTotal = 0;
+        
         for (Submission submission : subs) {
+            exercisesTotal += submission.getExercises().size();
+            hoursTotal += submission.getHours();
             System.out.println(submission);
         }
-
+        
+        System.out.println("\nyhteensä: " + exercisesTotal + " tehtävää " + hoursTotal + " tuntia");
     }
 }
