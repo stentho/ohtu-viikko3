@@ -40,6 +40,16 @@ public class AuthenticationService {
 
     private boolean invalid(String username, String password) {
         // validity check of username and password
+        String regex = "[a-zA-Z]*";
+        if (
+                !username.matches(regex)
+                || username.length() < 3 
+                || !(userDao.findByName(username) == null)
+                || password.length() < 8 
+                || password.matches(regex)
+                ) {
+            return true;
+        }
 
         return false;
     }
